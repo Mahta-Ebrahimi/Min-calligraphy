@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+/* `dark:` utilities apply inside the dark theme (html[data-theme="dark"] or a dark-themed section). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --color-ink: #14110d;
+  --color-charcoal: #1d1b18;
+  --color-ink-soft: #1c1712;
+  --color-wall: #1a1510;
+  --color-ivory: #f6f1e7;
+  --color-paper: #efe7d6;
+  --color-gold: #c9a66b;
+  --color-gold-deep: #a07f45;
+  --color-forest: #1f3a2e;
+  --color-carmine: #5a1f22;
+  --color-stone: #8a8173;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Text on gold buttons and pills, and form error text. */
+  --color-on-gold: #14110d;
+  --color-error: #e8a39a;
+
+  /* Hung-artwork shadows: resting and lifted (hover). */
+  --shadow-hung: 0 1px 2px rgb(0 0 0 / 0.35), 0 18px 40px -18px rgb(0 0 0 / 0.85);
+  --shadow-lifted: 0 2px 4px rgb(0 0 0 / 0.3), 0 34px 60px -22px rgb(0 0 0 / 0.95);
+}
+
+/*
+ * Themes. The values in @theme above are the dark theme. Light is the default: it applies
+ * unless <html data-theme="dark"> is set. Any element can also force a theme for its own
+ * subtree with data-theme="light" or data-theme="dark" (e.g. a section that should always be dark).
+ *
+ * Naming note: `ink` is the page background and `ivory` the main text colour in both themes.
+ */
+@layer base {
+  :root:not([data-theme='dark']),
+  [data-theme='light'] {
+    --color-ink: #f7f3eb;
+    --color-ink-soft: #ede6d8;
+    --color-wall: #ebe4d6;
+    --color-ivory: #1d1b18;
+    --color-gold: #8a6a2f;
+    --color-gold-deep: #6f5424;
+    --color-stone: #776e60;
+    --color-on-gold: #fbf8f2;
+    --color-error: #a8321f;
+    --shadow-hung: 0 1px 2px rgb(40 30 15 / 0.12), 0 18px 36px -18px rgb(40 30 15 / 0.45);
+    --shadow-lifted: 0 2px 4px rgb(40 30 15 / 0.12), 0 32px 56px -22px rgb(40 30 15 / 0.55);
+    --spotlight: rgb(255 255 255 / 0.6);
+    --hero-glow-1: rgb(201 166 107 / 0.16);
+    --hero-glow-2: rgb(201 166 107 / 0.08);
+    color-scheme: light;
+  }
+  [data-theme='dark'] {
+    --color-ink: #14110d;
+    --color-ink-soft: #1c1712;
+    --color-wall: #1a1510;
+    --color-ivory: #f6f1e7;
+    --color-gold: #c9a66b;
+    --color-gold-deep: #a07f45;
+    --color-stone: #8a8173;
+    --color-on-gold: #14110d;
+    --color-error: #e8a39a;
+    --shadow-hung: 0 1px 2px rgb(0 0 0 / 0.35), 0 18px 40px -18px rgb(0 0 0 / 0.85);
+    --shadow-lifted: 0 2px 4px rgb(0 0 0 / 0.3), 0 34px 60px -22px rgb(0 0 0 / 0.95);
+    --spotlight: rgb(246 241 231 / 0.1);
+    --hero-glow-1: rgb(201 166 107 / 0.13);
+    --hero-glow-2: rgb(31 58 46 / 0.45);
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-ink font-sans text-ivory antialiased transition-colors duration-500;
+    font-weight: 400;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium tracking-tight text-balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    @apply bg-gold text-on-gold;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-gold;
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+  /* Small section label, introduced by a short gold rule. */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-sans text-[0.68rem] font-medium tracking-[0.3em] text-gold uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-7 bg-current opacity-60;
+  }
+  .paper-grain {
+    background-image:
+      radial-gradient(circle at 20% 15%, rgb(255 255 255 / 0.35), transparent 45%),
+      radial-gradient(circle at 80% 85%, rgb(120 90 40 / 0.12), transparent 50%);
+  }
+  .field {
+    @apply w-full rounded-none border border-ivory/15 bg-ink-soft/60 px-4 py-3 text-ivory placeholder:text-stone transition-colors duration-300 hover:border-ivory/30 focus:border-gold focus:outline-none;
+  }
+  /* Soft light behind the homepage hero. */
+  .hero-atmosphere {
+    background-image:
+      radial-gradient(ellipse at 75% 35%, var(--hero-glow-1), transparent 55%),
+      radial-gradient(ellipse at 5% 95%, var(--hero-glow-2), transparent 50%);
+  }
+  /* Fine film grain over the whole site, for a tactile, printed feel. */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.045;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
