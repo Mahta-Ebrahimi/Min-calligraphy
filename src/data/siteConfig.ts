@@ -33,7 +33,7 @@ export const siteConfig = {
   },
   tagline: { en: 'Where ink becomes breath', da: 'Hvor blæk bliver til åndedræt' },
   url: 'https://example.com',
-  email: 'mahta.ir@gmail.com',
+  email: 'mahta.art.studio@gmail.com',
   location: { en: 'Copenhagen, Denmark', da: 'København, Danmark' },
   responseTime: { en: 'within 3 working days', da: 'inden for 3 hverdage' },
   social: {
