@@ -21,17 +21,14 @@ export function FeaturedWorks() {
           </Reveal>
         </div>
 
-        {/*
-          A swipeable row on phones (the next piece peeks in to show it scrolls);
-          an evenly hung row on large screens. Revealed as one unit so peeking cards are visible.
-        */}
-        <Reveal className="no-scrollbar -mx-5 mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 pb-2 sm:-mx-8 sm:scroll-px-8 sm:px-8 lg:mx-0 lg:mt-16 lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:px-0">
-          {featuredArtworks.map((artwork) => (
-            <div key={artwork.slug} className="w-[78%] shrink-0 snap-start sm:w-[44%] lg:w-auto">
-              <ArtworkCard artwork={artwork} />
-            </div>
+        {/* Two by two on phones and tablets, one evenly hung row on large screens. */}
+        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-14 lg:mt-16 lg:grid-cols-4">
+          {featuredArtworks.map((artwork, i) => (
+            <Reveal key={artwork.slug} delay={(i % 4) * 0.08}>
+              <ArtworkCard artwork={artwork} compact />
+            </Reveal>
           ))}
-        </Reveal>
+        </div>
 
         <div className="mt-10 md:hidden">
           <LinkButton to="/gallery" variant="outline" className="w-full">
