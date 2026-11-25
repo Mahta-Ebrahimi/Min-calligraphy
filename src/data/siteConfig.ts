@@ -34,8 +34,8 @@ export const siteConfig = {
   tagline: { en: 'Where ink becomes breath', da: 'Hvor blæk bliver til åndedræt' },
   url: 'https://min-calligraphy.vercel.app',
   email: 'mahta.art.studio@gmail.com',
-  /** Google Tag Manager container ID, e.g. 'GTM-ABC1234'. Leave empty to turn Tag Manager off. */
-  tagManagerId: '',
+  /** Google Tag Manager container ID. The loading code is in index.html; change the ID there too. Empty turns page tracking off. */
+  tagManagerId: 'GTM-MV6HT96T',
   location: { en: 'Copenhagen, Denmark', da: 'København, Danmark' },
   responseTime: { en: 'within 3 working days', da: 'inden for 3 hverdage' },
   social: {

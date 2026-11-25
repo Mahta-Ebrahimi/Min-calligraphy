@@ -117,7 +117,7 @@ Build command: `npm run build` · output directory: `dist`.
 
 ## Google Tag Manager
 
-Paste your container ID (it looks like `GTM-ABC1234`) into `tagManagerId` in `src/data/siteConfig.ts`. Leave it empty and Tag Manager doesn't load at all.
+The container is `GTM-MV6HT96T`. Google's Tag Manager code is at the top of `<head>` and `<body>` in `index.html`. The same ID is set as `tagManagerId` in `src/data/siteConfig.ts`, which turns on the page-change events below. To change containers, update all three places.
 
 - Tag Manager loads on every page.
 - The site changes pages without reloading, so it sends a `virtual_page_view` event each time the visitor opens another page, with `page_path`, `page_location` and `page_title`. In Tag Manager, use a **Custom Event** trigger named `virtual_page_view` for tags that should fire on every page. Google Analytics 4 can also track these page changes by itself ("Page changes based on browser history events" in its enhanced measurement settings). Use one or the other, not both, or page views are counted twice.
