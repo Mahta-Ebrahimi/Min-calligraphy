@@ -114,3 +114,11 @@ This is a single-page app, so every route has to serve `index.html`:
 - **Netlify:** `public/_redirects` is already included.
 
 Build command: `npm run build` · output directory: `dist`.
+
+## Google Tag Manager
+
+Paste your container ID (it looks like `GTM-ABC1234`) into `tagManagerId` in `src/data/siteConfig.ts`. Leave it empty and Tag Manager doesn't load at all.
+
+- Tag Manager loads on every page.
+- The site changes pages without reloading, so it sends a `virtual_page_view` event each time the visitor opens another page, with `page_path`, `page_location` and `page_title`. In Tag Manager, use a **Custom Event** trigger named `virtual_page_view` for tags that should fire on every page. Google Analytics 4 can also track these page changes by itself ("Page changes based on browser history events" in its enhanced measurement settings). Use one or the other, not both, or page views are counted twice.
+- **Cookie consent:** visitors in Denmark and the EU must agree before analytics or marketing cookies are set. Add a consent banner through Tag Manager (for example the Cookiebot or CookieYes template) before you publish tags that use cookies.

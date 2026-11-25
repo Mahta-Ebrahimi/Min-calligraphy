@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { siteConfig } from '@/data/siteConfig'
 import { useLanguage } from '@/i18n/LanguageContext'
+import { trackPageView } from '@/lib/analytics'
 
 const setMeta = (attr: 'name' | 'property', key: string, content: string) => {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
@@ -31,5 +32,6 @@ export function usePageMeta(title: string, description?: string) {
     setMeta('property', 'og:locale', lang === 'da' ? 'da_DK' : 'en_GB')
     setMeta('name', 'twitter:title', fullTitle)
     setMeta('name', 'twitter:description', desc)
+    trackPageView(fullTitle)
   }, [title, desc, lang])
 }
