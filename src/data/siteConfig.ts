@@ -32,7 +32,7 @@ export const siteConfig = {
     da: 'Original persisk kalligrafi i klassiske og moderne stilarter — skrevet i hånden med rørpen og blæk på håndlavet papir.',
   },
   tagline: { en: 'Where ink becomes breath', da: 'Hvor blæk bliver til åndedræt' },
-  url: 'https://example.com',
+  url: 'https://min-calligraphy.vercel.app',
   email: 'mahta.art.studio@gmail.com',
   /** Google Tag Manager container ID, e.g. 'GTM-ABC1234'. Leave empty to turn Tag Manager off. */
   tagManagerId: '',
